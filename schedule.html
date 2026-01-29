@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bri's Daily Schedule</title>
-
+    <title>Bri's Schedule</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+<body class="schedule-page">
 
-<body>
+<!-- NAVBAR -->
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -27,14 +27,19 @@
 </nav>
 
 <header class="jumbotron text-center">
-    <h1>Bri's Daily Schedule</h1>
-    <p id="current-date"></p>
+    <h1>My Weekly Schedule</h1>
+    <p>Track your day, stay productive!</p>
 </header>
 
-<section class="schedule-container container">
-</section>
+<div class="container schedule-container">
+    <!-- Days will be injected by JS -->
+</div>
+
+<!-- FOOTER -->
+<div class="credit">© 2026 Brianna Vondrak</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="schedule.js"></script>
 </body>
 </html>
