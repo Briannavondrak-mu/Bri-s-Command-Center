@@ -1,211 +1,288 @@
-/* ================== GENERAL ================== */
+/* =====================
+   GENERAL STYLES
+===================== */
 body.landing-page {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f4f6f8;
-    color: #333;
+    background-color: #0d0d0d;
+    color: #fff;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-h1, h2, h3, h4, h5 {
-    font-weight: 600;
+h1, h3, h4, h5 {
+    font-family: 'Poppins', sans-serif;
+    color: #ff66cc;
+    margin-bottom: 15px;
 }
 
 a {
-    color: #337ab7;
+    color: #ff66cc;
 }
-
 a:hover {
-    color: #23527c;
+    color: #ff3399;
     text-decoration: none;
 }
 
-/* ================== NAVBAR ================== */
+/* =====================
+   NAVBAR
+===================== */
 .navbar-inverse {
-    background-color: #222;
-    border-color: #080808;
+    background-color: #111;
+    border: none;
 }
 
 .navbar-inverse .navbar-brand {
-    color: #f1c40f;
+    color: #ff66cc;
     font-weight: bold;
+    font-size: 1.3em;
 }
 
 .navbar-inverse .navbar-nav > li > a {
+    color: #ff99cc;
+}
+
+.navbar-inverse .navbar-nav > li.active > a {
     color: #fff;
+    background-color: #330033;
 }
 
-.navbar-inverse .navbar-nav > .active > a,
-.navbar-inverse .navbar-nav > .active > a:hover {
-    background-color: #f1c40f;
-    color: #222;
-}
-
-/* ================== HEADER ================== */
+/* =====================
+   HEADER
+===================== */
 .jumbotron {
-    background: linear-gradient(135deg, #f1c40f, #f39c12);
-    color: #fff;
-    padding: 60px 30px;
-    border-radius: 15px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, #330033, #660066);
+    color: #ffccff;
+    padding: 50px 20px;
+    margin-bottom: 30px;
+    border-radius: 0;
+    text-shadow: 0 0 5px #ff66cc;
 }
 
-/* ================== HOME SECTION ================== */
+/* =====================
+   HOME SECTION
+===================== */
 .home {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 20px auto;
-    max-width: 1200px;
     gap: 20px;
+    padding: 20px;
 }
 
-.home-left, .home-right {
-    flex: 1;
-    min-width: 300px;
+/* LEFT PANEL: TO-DO */
+.home-left {
+    flex: 1 1 25%;
+    min-width: 250px;
 }
 
-/* ================== TO-DO LIST ================== */
 .todo-widget {
-    background: #f8f9fa;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
+    background-color: #1a001a;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #ff66cc80;
 }
 
-.todo-widget .input-group input {
-    border-radius: 8px 0 0 8px;
+.todo-widget h3 {
+    color: #ff99cc;
+    margin-bottom: 15px;
 }
 
-.todo-widget .input-group button {
-    border-radius: 0 8px 8px 0;
+.input-group input {
+    background-color: #2a001a;
+    border: 1px solid #ff66cc;
+    color: #fff;
+}
+
+.input-group input::placeholder {
+    color: #ff99cc;
+}
+
+.input-group-btn .btn-success {
+    background-color: #ff3399;
+    border: none;
+}
+
+.input-group-btn .btn-success:hover {
+    background-color: #ff66cc;
+}
+
+/* TO-DO LIST ITEMS */
+#todoList {
+    margin-top: 15px;
+    max-height: 500px;
+    overflow-y: auto;
 }
 
 .list-group-item.todo-item {
+    background-color: #220022;
+    color: #fff;
+    border: 1px solid #ff66cc40;
+    margin-bottom: 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor: pointer;
-    transition: 0.2s;
-    background: #fff;
-    margin-bottom: 5px;
-    border-radius: 8px;
-    padding: 10px;
+    transition: 0.3s;
 }
 
 .list-group-item.todo-item.completed .task-text {
     text-decoration: line-through;
-    color: #999;
+    color: #ff99cc80;
 }
 
 .list-group-item.todo-item:hover {
-    background: #e9ecef;
+    background-color: #330033;
 }
 
-.delete-btn i {
-    color: #fff;
+/* DELETE BUTTON */
+.delete-btn {
+    background: none;
+    border: none;
+    color: #ff66cc;
+    cursor: pointer;
 }
 
-/* ================== NEWS WIDGET ================== */
+.delete-btn:hover {
+    color: #ff3399;
+}
+
+/* =====================
+   RIGHT PANEL: WEATHER & NEWS
+===================== */
+.home-right {
+    flex: 1 1 70%;
+    min-width: 600px;
+}
+
+.graphics-area {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* NEWS WIDGET */
 .news-widget {
-    background: #f8f9fa;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
+    background-color: #1a001a;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #ff66cc80;
 }
 
 .news-widget h3 {
-    margin-top: 0;
+    color: #ff99cc;
 }
 
-/* ================== WEATHER ================== */
-.weather-section {
-    margin-top: 20px;
+/* WEATHER SECTION */
+.weather-section h3.section-title {
+    color: #ff66cc;
+    margin-bottom: 15px;
 }
 
+/* WEATHER CARD */
 .weather-card {
-    background: #f1f3f5;
-    border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background-color: #220022;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 15px #ff66cc40;
 }
 
-.weather-card h4, .weather-card h3 {
-    margin-top: 0;
-}
-
-.weather-header {
-    margin-bottom: 10px;
-}
-
-.location-name {
-    font-size: 1.2rem;
+.weather-header .location-name {
     font-weight: bold;
+    font-size: 1.2em;
 }
 
-.last-updated {
-    font-size: 0.85rem;
-    color: #555;
+.weather-header .last-updated {
+    font-size: 0.9em;
+    color: #ff99ccaa;
 }
 
-.weather-body {
-    text-align: center;
+.weather-body .current-temp {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ff99cc;
 }
 
-.weather-details {
+.weather-body .weather-details {
     display: flex;
     justify-content: space-around;
     margin-top: 15px;
 }
 
-.detail-item {
+.weather-body .detail-item {
     text-align: center;
-    font-size: 0.9rem;
 }
 
+.weather-body .detail-item i {
+    margin-bottom: 5px;
+    color: #ff66cc;
+}
+
+/* FORECAST */
 .forecast-container {
-    margin-top: 10px;
+    color: #fff;
 }
 
 .forecast-day {
-    background: #fff;
+    background-color: #2a001a;
     border-radius: 10px;
     text-align: center;
-    padding: 10px 5px;
     margin-bottom: 10px;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    padding: 10px;
+    box-shadow: 0 0 10px #ff66cc40;
 }
 
 .forecast-day h5 {
     margin-bottom: 5px;
+    color: #ff99cc;
 }
 
-/* ================== SEARCH ================== */
-.search-container {
-    margin-bottom: 20px;
+.forecast-day i {
+    font-size: 1.5rem;
+    color: #ff66cc;
+    margin-bottom: 5px;
 }
 
-.search-container label {
-    font-weight: bold;
-}
-
+/* =====================
+   SEARCH INPUT
+===================== */
 .search-container input {
-    border-radius: 8px;
+    background-color: #2a001a;
+    border: 1px solid #ff66cc;
+    color: #fff;
 }
 
-.search-container button {
-    border-radius: 8px;
+.search-container input::placeholder {
+    color: #ff99cc;
 }
 
-/* ================== FOOTER ================== */
+.search-container .btn-primary {
+    background-color: #ff3399;
+    border: none;
+}
+
+.search-container .btn-primary:hover {
+    background-color: #ff66cc;
+}
+
+/* =====================
+   FOOTER
+===================== */
 .credit {
     text-align: center;
-    margin: 20px 0;
-    font-size: 0.9rem;
-    color: #777;
+    padding: 15px;
+    background-color: #111;
+    color: #ff66cc;
 }
 
-.help-text {
-    color: #888;
+/* =====================
+   SCROLLBAR
+===================== */
+#todoList::-webkit-scrollbar,
+.forecast-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+#todoList::-webkit-scrollbar-thumb,
+.forecast-container::-webkit-scrollbar-thumb {
+    background-color: #ff66cc80;
+    border-radius: 4px;
 }
