@@ -31,9 +31,270 @@
     <p>Track your day, stay productive!</p>
 </header>
 
-<div class="container schedule-container">
-    <!-- Days will be injected by JS -->
+<div class="container py-9 py-lg-11 position-relative z-index-1">
+    <div class="row">
+        <!-- Left: Day Tabs -->
+        <div class="col-lg-5 mb-5 mb-lg-0">
+            <h5 class="mb-4 text-info">Schedule and Agenda</h5>
+            <div class="nav nav-pills flex-column" id="myTab" role="tablist">
+                <button class="nav-link px-4 text-start mb-3 active" id="mon-tab" data-bs-toggle="tab" data-bs-target="#mon" type="button" role="tab" aria-controls="mon" aria-selected="true">
+                    <span class="d-block fs-5 fw-bold">Monday</span>
+                    <span class="small">Mon</span>
+                </button>
+                <button class="nav-link px-4 text-start mb-3" id="tue-tab" data-bs-toggle="tab" data-bs-target="#tue" type="button" role="tab" aria-controls="tue" aria-selected="false">
+                    <span class="d-block fs-5 fw-bold">Tuesday</span>
+                    <span class="small">Tue</span>
+                </button>
+                <button class="nav-link px-4 text-start mb-3" id="wed-tab" data-bs-toggle="tab" data-bs-target="#wed" type="button" role="tab" aria-controls="wed" aria-selected="false">
+                    <span class="d-block fs-5 fw-bold">Wednesday</span>
+                    <span class="small">Wed</span>
+                </button>
+                <button class="nav-link px-4 text-start mb-3" id="thu-tab" data-bs-toggle="tab" data-bs-target="#thu" type="button" role="tab" aria-controls="thu" aria-selected="false">
+                    <span class="d-block fs-5 fw-bold">Thursday</span>
+                    <span class="small">Thu</span>
+                </button>
+                <button class="nav-link px-4 text-start" id="fri-tab" data-bs-toggle="tab" data-bs-target="#fri" type="button" role="tab" aria-controls="fri" aria-selected="false">
+                    <span class="d-block fs-5 fw-bold">Friday</span>
+                    <span class="small">Fri</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Right: Schedule Content -->
+        <div class="col-lg-7 col-xl-6">
+            <div class="tab-content" id="myTabContent">
+
+                <!-- Monday -->
+                <div class="tab-pane fade show active" id="mon" role="tabpanel" aria-labelledby="mon-tab">
+                    <ul class="pt-4 list-unstyled mb-0">
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">09:00 AM - 11:00 AM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>Wake Up & Get Ready</h4>
+                                <p class="mb-0">Home</p>
+                            </div>
+                        </li>
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">11:40 AM - 1:00 PM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>CSE 465 - B Comparative Programming Languages</h4>
+                                <p class="mb-0">McVey Data Science Building RM 166</p>
+                            </div>
+                        </li>
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">1:00 PM - 2:00 PM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>Lunch</h4>
+                                <p class="mb-0">Somewhere in the world</p>
+                            </div>
+                        </li>
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">2:00 PM - 5:00 PM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>Work</h4>
+                                <p class="mb-0">Armstrong Student Center RM 2030</p>
+                            </div>
+                        </li>
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">6:00 PM - 8:00 PM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>Miss. Black and Gold Practice</h4>
+                                <p class="mb-0"></p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Tuesday -->
+                <div class="tab-pane fade" id="tue" role="tabpanel" aria-labelledby="tue-tab">
+                    <ul class="pt-4 list-unstyled mb-0">
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">10:00 AM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>Wake Up</h4>
+                                <p class="mb-0">Home</p>
+                            </div>
+                        </li>
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">12:00 PM - 2:00 PM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>School Work</h4>
+                                <p class="mb-0">Home</p>
+                            </div>
+                        </li>
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">2:50 PM - 4:10 PM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>IMS 413 - User Experience Research</h4>
+                                <p class="mb-0">McVey Data Science Building RM 105</p>
+                            </div>
+                        </li>
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">4:15 PM - 5:00 PM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>BLC Executive Meeting</h4>
+                                <p class="mb-0">Armstrong Student Center 3rd Floor</p>
+                            </div>
+                        </li>
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">5:00 PM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>BLC Meeting</h4>
+                                <p class="mb-0">Armstrong Student Center C-Suite</p>
+                            </div>
+                        </li>
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">6:00 PM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>Home</h4>
+                                <p class="mb-0"></p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Wednesday -->
+                <div class="tab-pane fade show active" id="wed" role="tabpanel" aria-labelledby="wed-tab">
+                    <ul class="pt-4 list-unstyled mb-0">
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">08:00 AM - 9:30 AM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>Wake Up & Get Ready</h4>
+                                <p class="mb-0">Home</p>
+                            </div>
+                        </li>
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">10:05 AM - 11:25 AM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>CSE 374 - B Algorithms</h4>
+                                <p class="mb-0">McVey Data Science Building RM 207</p>
+                            </div>
+                        </li>
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">11:40 AM - 1:00 PM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>CSE 465 - B Comparative Programming Languages</h4>
+                                <p class="mb-0">McVey Data Science Building RM 166</p>
+                            </div>
+                        </li>
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">1:00 PM - 2:00 PM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>Lunch</h4>
+                                <p class="mb-0">Somewhere in the world</p>
+                            </div>
+                        </li>
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">2:00 PM - 5:00 PM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>Work</h4>
+                                <p class="mb-0">Armstrong Student Center RM 2030</p>
+                            </div>
+                        </li>
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">7:00 PM - 8:00 PM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>NSBE Meeting</h4>
+                                <p class="mb-0">Benton Hall RM 100</p>
+                            </div>
+                        </li>
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">8:00 PM - 10:00 PM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>Miss. Black and Gold Practice</h4>
+                                <p class="mb-0"></p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Thursday -->
+                <div class="tab-pane fade" id="thu" role="tabpanel" aria-labelledby="thu-tab">
+                    <ul class="pt-4 list-unstyled mb-0">
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">08:00 AM - 9:30 AM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>Wake Up & Get Ready</h4>
+                                <p class="mb-0">Home</p>
+                            </div>
+                        </li>
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">10:00 AM - 2:00 PM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>Work</h4>
+                                <p class="mb-0">Armstrong Student Center RM 2030</p>
+                            </div>
+                        </li>
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">2:50 PM - 4:10 PM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>IMS 413 - User Experience Research</h4>
+                                <p class="mb-0">McVey Data Science Building RM 105</p>
+                            </div>
+                        </li>
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">4:30 PM - Bed</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>Home / Rest</h4>
+                                <p class="mb-0"></p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Friday -->
+                <div class="tab-pane fade" id="fri" role="tabpanel" aria-labelledby="fri-tab">
+                    <ul class="pt-4 list-unstyled mb-0">
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">08:00 AM - 9:30 AM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>Wake Up & Get Ready</h4>
+                                <p class="mb-0">Home</p>
+                            </div>
+                        </li>
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">10:05 AM - 11:25 AM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>CSE 374 - B Algorithms</h4>
+                                <p class="mb-0">McVey Data Science Building RM 207</p>
+                            </div>
+                        </li>
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">12:00 PM - 5:00 PM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>Work</h4>
+                                <p class="mb-0">Armstrong Student Center RM 2030</p>
+                            </div>
+                        </li>
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">5:00 PM - 8:00 PM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>Home</h4>
+                                <p class="mb-0"></p>
+                            </div>
+                        </li>
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">8:00 PM - 10:00 PM</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>Miss. Black and Gold Practice</h4>
+                                <p class="mb-0"></p>
+                            </div>
+                        </li>
+                        <li class="d-flex flex-column flex-md-row py-3 schedule-item">
+                            <span class="flex-shrink-0 width-13x me-md-4 d-block mb-2 mb-md-0 small text-muted">10:00 PM - Bed</span>
+                            <div class="flex-grow-1 ps-4 border-start border-3">
+                                <h4>Sleep / Rest</h4>
+                                <p class="mb-0"></p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
+
 
 <!-- FOOTER -->
 <div class="credit">© 2026 Brianna Vondrak</div>
