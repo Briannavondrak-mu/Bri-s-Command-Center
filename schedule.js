@@ -1,68 +1,40 @@
-const weeklySchedule = {
-    Monday: [
-        { start: "09:00", end: "11:00", activity: "Wake Up / Get Ready", location: "Home" },
-        { start: "11:40", end: "13:00", activity: "CSE 465 - B Comparative Programming Languages", location: "McVey 166" },
-        { start: "13:00", end: "14:00", activity: "Lunch", location: "Somewhere in the world" },
-        { start: "14:00", end: "17:00", activity: "Work", location: "Armstrong 2030" },
-        { start: "18:00", end: "20:00", activity: "Miss. Black & Gold Practice", location: "-" }
-    ],
-    Tuesday: [
-        { start: "10:00", end: "12:00", activity: "Wake Up / School Work", location: "Home" },
-        { start: "12:00", end: "14:00", activity: "School Work", location: "Home" },
-        { start: "14:50", end: "16:10", activity: "IMS 413 - User Experience Research", location: "McVey 105" },
-        { start: "16:15", end: "17:00", activity: "BLC Executive Meeting", location: "Armstrong 3rd Floor" },
-        { start: "17:00", end: "18:00", activity: "BLC Meeting", location: "Armstrong C-Suite" },
-        { start: "18:00", end: "23:59", activity: "Home", location: "-" }
-    ],
-    // Add Wednesday-Friday similarly...
-};
+document.addEventListener("DOMContentLoaded", () => {
+    const tabs = document.querySelectorAll(".nav-link");
+    const scheduleItems = document.querySelectorAll(".schedule-item");
 
-// Convert "HH:MM" to minutes since midnight
-function timeToMinutes(time) {
-    const [hours, mins] = time.split(":").map(Number);
-    return hours * 60 + mins;
-}
+    function updateSchedule() {
+        const now = new Date();
+        const dayOfWeek = now.getDay(); // 0 = Sunday, 1 = Monday, ... 5 = Friday
+        const currentHour = now.getHours();
+        const currentMinute = now.getMinutes();
 
-// Generate schedule
-function renderSchedule() {
-    const container = $(".schedule-container");
-    container.empty();
-
-    const today = new Date();
-    const currentDay = today.toLocaleString('en-US', { weekday: 'long' });
-    const currentMinutes = today.getHours() * 60 + today.getMinutes();
-
-    for (const [day, slots] of Object.entries(weeklySchedule)) {
-        const dayCard = $(`
-            <div class="day-card">
-                <h3>${day}</h3>
-            </div>
-        `);
-
-        slots.forEach(slot => {
-            const startMinutes = timeToMinutes(slot.start);
-            const endMinutes = timeToMinutes(slot.end);
-
-            const isCurrent = day === currentDay && currentMinutes >= startMinutes && currentMinutes <= endMinutes;
-
-            const slotDiv = $(`
-                <div class="time-slot ${isCurrent ? 'current' : ''}">
-                    <span class="time">${slot.start} - ${slot.end}</span>
-                    <span class="activity">${slot.activity}</span>
-                    <span class="location">${slot.location}</span>
-                </div>
-            `);
-
-            dayCard.append(slotDiv);
+        // Automatically switch to today tab (Mon=1, Tue=2,...)
+        const todayTabIndex = dayOfWeek >= 1 && dayOfWeek <= 5 ? dayOfWeek - 1 : 0;
+        tabs.forEach((tab, i) => {
+            tab.classList.toggle("active", i === todayTabIndex);
+            const target = document.querySelector(tab.dataset.bsTarget);
+            target.classList.toggle("show", i === todayTabIndex);
+            target.classList.toggle("active", i === todayTabIndex);
         });
 
-        container.append(dayCard);
+        // Highlight current activity
+        scheduleItems.forEach(item => {
+            const [startHour, startMin] = item.dataset.start.split(":").map(Number);
+            const [endHour, endMin] = item.dataset.end.split(":").map(Number);
+
+            const start = new Date();
+            start.setHours(startHour, startMin, 0, 0);
+            const end = new Date();
+            end.setHours(endHour, endMin, 0, 0);
+
+            if (now >= start && now <= end) {
+                item.classList.add("current");
+            } else {
+                item.classList.remove("current");
+            }
+        });
     }
-}
 
-$(document).ready(function() {
-    renderSchedule();
-
-    // Update highlight every minute
-    setInterval(renderSchedule, 60000);
+    updateSchedule();
+    setInterval(updateSchedule, 60000); // Update every minute
 });
