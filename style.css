@@ -99,6 +99,9 @@ a:hover {
     color: #ff99cc;
     margin-bottom: 15px;
 }
+.todo-widget .input-group .btn {
+    margin-left: 5px; /* space between input and button */
+}
 
 .input-group input {
     background-color: #2a001a;
@@ -158,9 +161,6 @@ a:hover {
     color: #ff3399;
 }
 
-.todo-widget .input-group .btn {
-    margin-left: 5px; /* space between input and button */
-}
 
 /* =====================
    RIGHT PANEL: WEATHER & NEWS
