@@ -1,47 +1,20 @@
-// =====================
-// SERVER TASK FUNCTIONS
-// =====================
-async function loadTasks() {
-    try {
-        const res = await fetch("/tasks");
-        const tasks = await res.json();
-        return tasks;
-    } catch (err) {
-        console.error("Failed to load tasks:", err);
-        return [];
-    }
-}
-
-async function saveTasks(tasks) {
-    try {
-        await fetch("/tasks", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(tasks),
-        });
-    } catch (err) {
-        console.error("Failed to save tasks:", err);
-    }
-}
-
-// =====================
-// TO-DO LIST
-// =====================
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
+    // =====================
+    // TO-DO LIST
+    // =====================
     const todoInput = document.getElementById("todoInput");
     const addTodoBtn = document.getElementById("addTodoBtn");
     const todoList = document.getElementById("todoList");
 
-    // Load tasks from server
-    let tasks = await loadTasks();
-    tasks.forEach(task => addTaskToDOM(task));
+    function addTask(taskText = null) {
+        const text = taskText || todoInput.value.trim();
+        if (!text) return;
 
-    function addTaskToDOM(taskText) {
         const li = document.createElement("li");
         li.className = "list-group-item todo-item";
 
         li.innerHTML = `
-            <span class="task-text">${taskText}</span>
+            <span class="task-text">${text}</span>
             <button class="btn btn-xs btn-danger pull-right delete-btn">
                 <i class="fa-solid fa-trash"></i>
             </button>
@@ -55,19 +28,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Delete task
         li.querySelector(".delete-btn").addEventListener("click", () => {
             li.remove();
-            tasks = tasks.filter(t => t !== taskText);
-            saveTasks(tasks);
         });
 
         todoList.appendChild(li);
-    }
-
-    function addTask() {
-        const text = todoInput.value.trim();
-        if (!text) return;
-        tasks.push(text);
-        addTaskToDOM(text);
-        saveTasks(tasks);
         todoInput.value = "";
     }
 
@@ -186,7 +149,10 @@ function loadOpenMeteo(zip) {
                     `);
 
                     $('#openmeteo-updated').text(
-                        `Updated: ${new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`
+                        `Updated: ${new Date().toLocaleTimeString([], {
+                            hour: "2-digit",
+                            minute: "2-digit"
+                        })}`
                     );
 
                     // FORECAST
