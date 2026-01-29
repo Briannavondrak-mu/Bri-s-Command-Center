@@ -54,13 +54,27 @@
 <section id="home" class="home">
 
     <div class="home-left">
-        <!-- TO-DO LIST -->
-        <div class="todo-widget">
-            <h3>
-                <i class="fa-solid fa-list-check"></i> To-Do List
-            </h3>
-            <div id="todoList"></div>
-        </div>
+         <!-- TO-DO LIST -->
+            <div class="todo-widget">
+                <h3>
+                    <i class="fa-solid fa-list-check"></i> To-Do List
+                </h3>
+
+                <div class="input-group">
+                    <input
+                        type="text"
+                        id="todoInput"
+                        class="form-control"
+                        placeholder="Add a new task...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-success" id="addTodoBtn">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </span>
+                </div>
+
+                <ul id="todoList" class="list-group"></ul>
+            </div>
     </div>
 
     <div class="home-right">
