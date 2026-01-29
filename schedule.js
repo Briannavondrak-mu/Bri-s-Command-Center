@@ -2,10 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const tabs = document.querySelectorAll(".nav-link");
     const scheduleItems = document.querySelectorAll(".schedule-item");
 
-    // Add data-start and data-end for each item
-    // Example for Monday first item: data-start="09:00" data-end="11:00"
-    // Make sure to add these attributes to all <li class="schedule-item"> elements in HTML
-
     function updateSchedule() {
         const now = new Date();
         const dayOfWeek = now.getDay(); // 0=Sun, 1=Mon, 5=Fri
@@ -15,18 +11,19 @@ document.addEventListener("DOMContentLoaded", () => {
         // Auto switch tab to today (Mon-Fri)
         const todayTabIndex = dayOfWeek >= 1 && dayOfWeek <= 5 ? dayOfWeek - 1 : 0;
         tabs.forEach((tab, i) => {
-            const target = document.querySelector(tab.dataset.bsTarget);
+            const target = document.querySelector(tab.getAttribute("data-bs-target"));
             if (i === todayTabIndex) {
                 tab.classList.add("active");
-                target.classList.add("show", "active");
+                target.classList.add("in", "active"); // Bootstrap 3 uses "in"
             } else {
                 tab.classList.remove("active");
-                target.classList.remove("show", "active");
+                target.classList.remove("in", "active");
             }
         });
 
         // Highlight current activity
         scheduleItems.forEach(item => {
+            if (!item.dataset.start || !item.dataset.end) return; // skip if not set
             const start = item.dataset.start.split(":").map(Number);
             const end = item.dataset.end.split(":").map(Number);
 
@@ -44,7 +41,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateSchedule();
     setInterval(updateSchedule, 60000); // check every minute
-});
-    updateSchedule();
-    setInterval(updateSchedule, 60000); // Update every minute
 });
