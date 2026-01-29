@@ -79,6 +79,7 @@ a:hover {
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
+    box-shadow: 0 0 20px #ff66cc55;
 }
 
 .jumbotron:hover {
