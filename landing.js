@@ -1,17 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // =====================
+    // TO-DO LIST
+    // =====================
     const todoInput = document.getElementById("todoInput");
     const addTodoBtn = document.getElementById("addTodoBtn");
     const todoList = document.getElementById("todoList");
 
-    function addTask() {
-        const taskText = todoInput.value.trim();
-        if (taskText === "") return;
+    function addTask(taskText = null) {
+        const text = taskText || todoInput.value.trim();
+        if (!text) return;
 
         const li = document.createElement("li");
         li.className = "list-group-item todo-item";
 
         li.innerHTML = `
-            <span class="task-text">${taskText}</span>
+            <span class="task-text">${text}</span>
             <button class="btn btn-xs btn-danger pull-right delete-btn">
                 <i class="fa-solid fa-trash"></i>
             </button>
@@ -32,123 +35,173 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     addTodoBtn.addEventListener("click", addTask);
-
     todoInput.addEventListener("keypress", (e) => {
-        if (e.key === "Enter") {
-            addTask();
-        }
+        if (e.key === "Enter") addTask();
     });
+
+    // Example tasks
+    addTask("Call Sam for payments");
+    addTask("Make payment to Bluedart");
+    addTask("Office grocery shopping");
 });
 
 // =====================
-// WEATHER.GOV FUNCTIONS
+// WEATHER HELPERS
 // =====================
-function getGovWeatherIcon(shortForecast, isDay = true) {
-    const sf = shortForecast.toLowerCase();
-    if (sf.includes("snow")) return "fas fa-snowflake";
-    if (sf.includes("rain") || sf.includes("showers")) return "fas fa-cloud-showers-heavy";
-    if (sf.includes("thunder")) return "fas fa-bolt";
-    if (sf.includes("fog") || sf.includes("haze") || sf.includes("mist")) return "fas fa-smog";
-    if (sf.includes("cloudy") || sf.includes("overcast")) return "fas fa-cloud";
-    if (sf.includes("clear") || sf.includes("sunny")) return isDay ? "fas fa-sun" : "fas fa-moon";
+function getWeatherDescription(code) {
+    const weatherCodes = {
+        0: "Clear sky",
+        1: "Mainly clear",
+        2: "Partly cloudy",
+        3: "Overcast",
+        45: "Fog",
+        48: "Rime fog",
+        51: "Light drizzle",
+        53: "Moderate drizzle",
+        55: "Dense drizzle",
+        61: "Slight rain",
+        63: "Moderate rain",
+        65: "Heavy rain",
+        71: "Light snow",
+        73: "Moderate snow",
+        75: "Heavy snow",
+        80: "Rain showers",
+        95: "Thunderstorm"
+    };
+    return weatherCodes[code] || "Unknown";
+}
+
+function getWeatherIcon(code, isDay = true) {
+    if (code === 0) return isDay ? "fas fa-sun" : "fas fa-moon";
+    if (code <= 3) return "fas fa-cloud";
+    if (code <= 48) return "fas fa-smog";
+    if (code <= 67) return "fas fa-cloud-rain";
+    if (code <= 77) return "fas fa-snowflake";
+    if (code <= 82) return "fas fa-cloud-showers-heavy";
+    if (code <= 99) return "fas fa-bolt";
     return "fas fa-question";
 }
 
-// Load Weather.gov
-function loadWeatherGov(zip) {
-    // 1️⃣ Geocode ZIP → lat/lon
-    $.getJSON(`https://geocoding-api.open-meteo.com/v1/search?name=${zip}&count=1`)
-        .done((geo) => {
+// =====================
+// GEOCODING (ZIP → LAT/LON)
+// =====================
+function getCoordinates(zip) {
+    return $.ajax({
+        url: `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(zip)}&count=1`,
+        method: "GET"
+    });
+}
+
+// =====================
+// OPEN-METEO LOAD (FAHRENHEIT)
+// =====================
+function loadOpenMeteo(zip) {
+    getCoordinates(zip)
+        .done(function (geo) {
             if (!geo.results || geo.results.length === 0) {
-                $('#gov-current').html("Location not found");
+                $('#openmeteo-current').html("Location not found");
                 return;
             }
 
             const loc = geo.results[0];
-            const lat = loc.latitude;
-            const lon = loc.longitude;
+            $('#openmeteo-location').text(`${loc.name}${loc.admin1 ? ", " + loc.admin1 : ""}`);
 
-            // 2️⃣ Get Weather.gov points
-            $.getJSON(`https://api.weather.gov/points/${lat},${lon}`)
-                .done((points) => {
-                    const forecastUrl = points.properties.forecast;
-                    const rel = points.properties.relativeLocation.properties;
-                    $('#gov-location').text(`${rel.city}, ${rel.state}`);
+            $.ajax({
+                url: `https://api.open-meteo.com/v1/forecast
+                    ?latitude=${loc.latitude}
+                    &longitude=${loc.longitude}
+                    &current_weather=true
+                    &daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset
+                    &temperature_unit=fahrenheit
+                    &timezone=auto`.replace(/\s+/g, ""),
+                method: "GET"
+            })
+                .done(function (data) {
+                    const current = data.current_weather;
+                    const isDay = current.is_day === 1;
+                    const desc = getWeatherDescription(current.weathercode);
+                    const icon = getWeatherIcon(current.weathercode, isDay);
 
-                    // 3️⃣ Get forecast data
-                    $.getJSON(forecastUrl)
-                        .done((forecastData) => {
-                            const periods = forecastData.properties.periods;
-                            const today = periods[0];
-                            const isDay = today.isDaytime;
+                    // CURRENT WEATHER
+                    $('#openmeteo-current').html(`
+                        <div class="text-center">
+                            <div class="current-temp">${Math.round(current.temperature)}°F</div>
+                            <div class="weather-icon" style="font-size:5rem">
+                                <i class="${icon}"></i>
+                            </div>
+                            <h3>${desc}</h3>
+                        </div>
 
-                            // CURRENT WEATHER
-                            const iconClass = getGovWeatherIcon(today.shortForecast, isDay);
-                            $('#gov-current').html(`
-                                <div class="text-center">
-                                    <div class="current-temp">${today.temperature}°${today.temperatureUnit}</div>
-                                    <div class="weather-icon" style="font-size:5rem">
-                                        <i class="${iconClass}"></i>
-                                    </div>
-                                    <h3>${today.shortForecast}</h3>
+                        <div class="weather-details">
+                            <div class="detail-item">
+                                <i class="fas fa-wind"></i>
+                                <div>${current.windspeed} km/h</div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-temperature-high"></i>
+                                <div>
+                                    ${Math.round(data.daily.temperature_2m_max[0])}°F
+                                    /
+                                    ${Math.round(data.daily.temperature_2m_min[0])}°F
                                 </div>
-                                <div class="weather-details">
-                                    <div class="detail-item">
-                                        <i class="fas fa-wind"></i>
-                                        <div>${today.windSpeed} ${today.windDirection}</div>
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-tint"></i>
-                                        <div>Precipitation: ${today.probabilityOfPrecipitation.value}%</div>
+                            </div>
+                        </div>
+                    `);
+
+                    $('#openmeteo-updated').text(
+                        `Updated: ${new Date().toLocaleTimeString([], {
+                            hour: "2-digit",
+                            minute: "2-digit"
+                        })}`
+                    );
+
+                    // FORECAST
+                    const forecastRow = $('#openmeteo-forecast-row');
+                    forecastRow.empty();
+
+                    for (let i = 1; i <= 6; i++) {
+                        const day = new Date(data.daily.time[i]);
+                        forecastRow.append(`
+                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                                <div class="forecast-day">
+                                    <h5>${day.toLocaleDateString("en-US", { weekday: "short" })}</h5>
+                                    <i class="${getWeatherIcon(data.daily.weathercode[i])}"></i>
+                                    <div>
+                                        ${Math.round(data.daily.temperature_2m_max[i])}°F
+                                        /
+                                        ${Math.round(data.daily.temperature_2m_min[i])}°F
                                     </div>
                                 </div>
-                            `);
+                            </div>
+                        `);
+                    }
 
-                            $('#gov-updated').text(`Updated: ${today.startTime.slice(11,16)}`);
-
-                            // FORECAST
-                            const forecastRow = $('#gov-forecast-row');
-                            forecastRow.empty();
-                            let dayCount = 0;
-                            for (let i = 1; i < periods.length && dayCount < 6; i++) {
-                                const period = periods[i];
-                                if (!period.isDaytime) continue;
-
-                                const iconClass = getGovWeatherIcon(period.shortForecast, true);
-                                const dayName = new Date(period.startTime).toLocaleDateString("en-US",{weekday:"short"});
-                                const dateStr = new Date(period.startTime).toLocaleDateString("en-US",{month:"short",day:"numeric"});
-
-                                forecastRow.append(`
-                                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                                        <div class="forecast-day">
-                                            <h5>${dayName}</h5>
-                                            <div style="font-size:1.5rem; color:#f1c40f">
-                                                <i class="${iconClass}"></i>
-                                            </div>
-                                            <div>${period.temperature}°${period.temperatureUnit}</div>
-                                            <div>${period.shortForecast}</div>
-                                        </div>
-                                    </div>
-                                `);
-                                dayCount++;
-                            }
-                        });
+                    $('.weather-card').show();
                 })
-                .fail(() => { $('#gov-current').html("Weather.gov API failed"); });
+                .fail(() => {
+                    $('#openmeteo-current').html("Failed to load weather");
+                });
         })
-        .fail(() => { $('#gov-current').html("ZIP geocoding failed"); });
+        .fail(() => {
+            $('#openmeteo-current').html("Geocoding failed");
+        });
 }
 
 // =====================
 // SEARCH HANDLER
 // =====================
-$('#search-btn').on('click', () => {
-    const zip = $('#search-input').val().trim();
-    if (!zip) return alert("Enter a ZIP code");
+$(document).ready(function () {
     $('.weather-card').hide();
-    loadWeatherGov(zip);
+
+    $('#search-btn').on('click', () => {
+        const zip = $('#search-input').val().trim();
+        if (!zip) return alert("Enter a ZIP code");
+        $('.weather-card').hide();
+        loadOpenMeteo(zip);
+    });
+
+    $('#search-input').on('keyup', e => {
+        if (e.key === "Enter") $('#search-btn').click();
+    });
 });
 
-$('#search-input').on('keyup', e => {
-    if (e.key === "Enter") $('#search-btn').click();
-});
