@@ -1,224 +1,209 @@
-/* =======================
-   GLOBAL RESET & BODY
-   ======================= */
-body {
+/* ================== GENERAL ================== */
+body.landing-page {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #1e1e2f;
-    color: #f5f5f5;
-    margin: 0;
-    padding: 0;
-}
-
-a {
-    color: #f5f5f5;
+    background: #f4f6f8;
+    color: #333;
 }
 
 h1, h2, h3, h4, h5 {
     font-weight: 600;
-    margin: 0 0 10px 0;
 }
 
-/* =======================
-   NAVBAR
-   ======================= */
+a {
+    color: #337ab7;
+}
+
+a:hover {
+    color: #23527c;
+    text-decoration: none;
+}
+
+/* ================== NAVBAR ================== */
 .navbar-inverse {
-    background-color: #2b2b3d;
-    border: none;
+    background-color: #222;
+    border-color: #080808;
 }
 
-.navbar-inverse .navbar-brand,
-.navbar-inverse .navbar-nav > li > a {
-    color: #f5f5f5;
+.navbar-inverse .navbar-brand {
+    color: #f1c40f;
     font-weight: bold;
 }
 
-.navbar-inverse .navbar-nav > li > a:hover,
-.navbar-inverse .navbar-brand:hover {
-    color: #3498db;
+.navbar-inverse .navbar-nav > li > a {
+    color: #fff;
 }
 
-/* =======================
-   HEADER / JUMBOTRON
-   ======================= */
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover {
+    background-color: #f1c40f;
+    color: #222;
+}
+
+/* ================== HEADER ================== */
 .jumbotron {
-    background: linear-gradient(135deg, #2b2b3d, #1e1e2f);
-    color: #f5f5f5;
-    padding: 3rem 1rem;
-    margin-bottom: 2rem;
-    border-radius: 0;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    background: linear-gradient(135deg, #f1c40f, #f39c12);
+    color: #fff;
+    padding: 60px 30px;
+    border-radius: 15px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
 }
 
-/* =======================
-   HOME SECTION LAYOUT
-   ======================= */
+/* ================== HOME SECTION ================== */
 .home {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px auto;
+    max-width: 1200px;
     gap: 20px;
-    padding: 0 15px 50px 15px;
 }
 
-.home-left,
-.home-right {
+.home-left, .home-right {
     flex: 1;
     min-width: 300px;
 }
 
-/* =======================
-   WIDGETS
-   ======================= */
-.todo-widget,
-.news-widget,
-.weather-section,
-.forecast-container {
-    background-color: #2b2b3d;
-    border-radius: 10px;
+/* ================== TO-DO LIST ================== */
+.todo-widget {
+    background: #f8f9fa;
     padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
 }
 
-.todo-widget h3,
-.news-widget h3,
-.weather-section .section-title,
-.forecast-title {
-    color: #3498db;
-    margin-bottom: 15px;
+.todo-widget .input-group input {
+    border-radius: 8px 0 0 8px;
 }
 
-/* =======================
-   TO-DO LIST
-   ======================= */
-#todoList {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.todo-widget .input-group button {
+    border-radius: 0 8px 8px 0;
 }
 
-.todo-item {
+.list-group-item.todo-item {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 10px;
-    background-color: #1e1e2f;
-    border-bottom: 1px solid #444;
-    border-radius: 5px;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.2s;
+    background: #fff;
     margin-bottom: 5px;
-    transition: all 0.2s;
+    border-radius: 8px;
+    padding: 10px;
 }
 
-.todo-item.completed .task-text {
+.list-group-item.todo-item.completed .task-text {
     text-decoration: line-through;
-    color: #888;
+    color: #999;
 }
 
-.todo-item:hover {
-    background-color: #33334d;
+.list-group-item.todo-item:hover {
+    background: #e9ecef;
 }
 
 .delete-btn i {
-    color: #e74c3c;
+    color: #fff;
 }
 
-/* =======================
-   WEATHER CARDS
-   ======================= */
+/* ================== NEWS WIDGET ================== */
+.news-widget {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.news-widget h3 {
+    margin-top: 0;
+}
+
+/* ================== WEATHER ================== */
+.weather-section {
+    margin-top: 20px;
+}
+
 .weather-card {
-    background-color: #2b2b3d;
-    border-radius: 10px;
+    background: #f1f3f5;
+    border-radius: 12px;
     padding: 15px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.weather-card h4, .weather-card h3 {
+    margin-top: 0;
 }
 
 .weather-header {
-    display: flex;
-    justify-content: space-between;
     margin-bottom: 10px;
+}
+
+.location-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.last-updated {
+    font-size: 0.85rem;
+    color: #555;
 }
 
 .weather-body {
     text-align: center;
 }
 
-.weather-icon {
-    color: #f1c40f;
-    margin-bottom: 10px;
+.weather-details {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
 }
 
 .detail-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 5px;
-}
-
-.detail-item i {
-    margin-right: 5px;
-    color: #3498db;
-}
-
-/* =======================
-   FORECAST
-   ======================= */
-.forecast-day {
-    background-color: #1e1e2f;
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 10px;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    font-size: 0.9rem;
 }
 
-.forecast-day i {
-    font-size: 1.5rem;
-    color: #f1c40f;
+.forecast-container {
+    margin-top: 10px;
 }
 
-/* =======================
-   SEARCH BAR
-   ======================= */
+.forecast-day {
+    background: #fff;
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+}
+
+.forecast-day h5 {
+    margin-bottom: 5px;
+}
+
+/* ================== SEARCH ================== */
+.search-container {
+    margin-bottom: 20px;
+}
+
 .search-container label {
     font-weight: bold;
-    color: #3498db;
 }
 
-#search-input {
-    background-color: #1e1e2f;
-    border: 1px solid #444;
-    color: #f5f5f5;
+.search-container input {
+    border-radius: 8px;
 }
 
-#search-input::placeholder {
-    color: #888;
+.search-container button {
+    border-radius: 8px;
 }
 
-#search-btn {
-    background-color: #3498db;
-    border: none;
-}
-
-#search-btn:hover {
-    background-color: #2980b9;
-}
-
-/* =======================
-   FOOTER
-   ======================= */
+/* ================== FOOTER ================== */
 .credit {
     text-align: center;
-    padding: 15px;
-    background-color: #2b2b3d;
-    border-top: 1px solid #444;
-}
-
-/* =======================
-   MISC
-   ======================= */
-.loading {
-    color: #3498db;
-    font-size: 1rem;
+    margin: 20px 0;
+    font-size: 0.9rem;
+    color: #777;
 }
 
 .help-text {
