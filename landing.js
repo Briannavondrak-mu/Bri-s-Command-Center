@@ -38,12 +38,12 @@ document.addEventListener("DOMContentLoaded", () => {
     todoInput.addEventListener("keypress", (e) => {
         if (e.key === "Enter") addTask();
     });
-
-    // Example tasks
-    addTask("Call Sam for payments");
-    addTask("Make payment to Bluedart");
-    addTask("Office grocery shopping");
 });
+
+// =====================
+// GLOBAL STATE
+// =====================
+let globalOpenMeteo = null;
 
 // =====================
 // WEATHER HELPERS
@@ -187,21 +187,27 @@ function loadOpenMeteo(zip) {
         });
 }
 
+
 // =====================
 // SEARCH HANDLER
 // =====================
+function searchWeather() {
+    const input = $('#search-input').val().trim();
+    if (!input) return alert("Enter a ZIP code");
+    $('.weather-card').hide();
+    loadOpenMeteo(input);
+}
+
+// =====================
+// EVENTS
+// =====================
 $(document).ready(function () {
     $('.weather-card').hide();
-
-    $('#search-btn').on('click', () => {
-        const zip = $('#search-input').val().trim();
-        if (!zip) return alert("Enter a ZIP code");
-        $('.weather-card').hide();
-        loadOpenMeteo(zip);
-    });
-
+    $('#search-btn').on('click', searchWeather);
     $('#search-input').on('keyup', e => {
-        if (e.key === "Enter") $('#search-btn').click();
+        if (e.key === "Enter") searchWeather();
     });
 });
+
+
 
