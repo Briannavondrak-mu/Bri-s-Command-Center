@@ -8,108 +8,75 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
+        /* =====================
+           PAGE BACKGROUND
+        ===================== */
         body.schedule-page {
-    background-color: #0d0d0d; /* solid black background */
-    color: #fff;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-}
-
-/* =====================
-   DAY BUTTONS
-===================== */
-.nav-pills > li > a {
-    background-color: #220022;
-    color: #ff99cc;
-    margin-bottom: 12px;
-    border-radius: 12px;
-    text-align: center;
-    padding: 16px 25px; /* bigger buttons */
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 10px #ff66cc44;
-}
-
-.nav-pills > li > a:hover {
-    background: linear-gradient(90deg, #ff66cc44, #ff339944);
-    color: #fff;
-    box-shadow: 0 0 25px #ff66ccaa;
-    transform: translateY(-2px);
-}
-
-.nav-pills > li.active > a {
-    background: linear-gradient(90deg, #ff66cc, #ff3399);
-    color: #fff;
-    font-weight: bold;
-    box-shadow: 0 0 30px #ff66ccbb;
-}
-
-/* =====================
-   SCHEDULE ITEMS
-===================== */
-.schedule-item {
-    background: linear-gradient(135deg, #220022, #330033);
-    border-radius: 12px;
-    padding: 15px 20px;
-    margin-bottom: 12px;
-    box-shadow: 0 0 15px #ff66cc33;
-    transition: all 0.3s ease;
-    font-size: 1.05rem;
-}
-
-.schedule-item:hover {
-    box-shadow: 0 0 25px #ff66cc88;
-    transform: translateY(-2px);
-}
-
-/* CURRENT SCHEDULE ITEM */
-.schedule-item.current {
-    background: linear-gradient(135deg, #ff66cc, #ff3399);
-    color: #fff;
-    font-weight: bold;
-    border-left: 4px solid #fff;
-    box-shadow: 0 0 25px #ff66ccaa;
-}
+            background-color: #0d0d0d; /* solid black background */
+            color: #fff;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
         
         /* =====================
-           TABS / NAV PILLS
+           DAY BUTTONS
         ===================== */
         .nav-pills > li > a {
             background-color: #220022;
             color: #ff99cc;
-            margin-bottom: 8px;
-            border-radius: 8px;
-            text-align: left;
-            padding: 12px 18px;
-            font-weight: 500;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            text-align: center;
+            padding: 16px 25px; /* bigger buttons */
+            font-weight: 600;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
+            box-shadow: 0 0 10px #ff66cc44;
         }
         
         .nav-pills > li > a:hover {
             background: linear-gradient(90deg, #ff66cc44, #ff339944);
             color: #fff;
-            box-shadow: 0 0 15px #ff66cc55;
+            box-shadow: 0 0 25px #ff66ccaa;
+            transform: translateY(-2px);
         }
         
         .nav-pills > li.active > a {
             background: linear-gradient(90deg, #ff66cc, #ff3399);
             color: #fff;
             font-weight: bold;
-            box-shadow: 0 0 20px #ff66cc80;
+            box-shadow: 0 0 30px #ff66ccbb;
         }
         
         /* =====================
-           GENERAL ADJUSTMENTS
+           SCHEDULE ITEMS
         ===================== */
-        .nav-pills {
-            padding: 10px 0;
+        .schedule-item {
+            background: linear-gradient(135deg, #220022, #330033);
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            box-shadow: 0 0 15px #ff66cc33;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
         }
         
-        .nav-pills li {
-            margin-bottom: 5px;
+        .schedule-item:hover {
+            box-shadow: 0 0 25px #ff66cc88;
+            transform: translateY(-2px);
         }
+        
+        /* CURRENT SCHEDULE ITEM */
+        .schedule-item.current {
+            background: linear-gradient(135deg, #ff66cc, #ff3399);
+            color: #fff;
+            font-weight: bold;
+            border-left: 4px solid #fff;
+            box-shadow: 0 0 25px #ff66ccaa;
+        }
+        
+        
     </style>
 </head>
 <body class="schedule-page">
