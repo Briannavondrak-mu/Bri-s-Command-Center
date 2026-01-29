@@ -8,28 +8,60 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Schedule Highlight */
+        /* =====================
+           SCHEDULE HIGHLIGHT
+        ===================== */
         .schedule-item.current {
             background: linear-gradient(90deg, #ff66cc, #ff3399);
             color: #fff;
             font-weight: bold;
             border-left: 4px solid #fff;
             box-shadow: 0 0 15px #ff66cc80;
+            border-radius: 8px;
+            transition: all 0.3s ease;
         }
-        /* Tabs */
+        
+        .schedule-item.current:hover {
+            box-shadow: 0 0 25px #ff66ccaa;
+            transform: translateY(-2px);
+        }
+        
+        /* =====================
+           TABS / NAV PILLS
+        ===================== */
         .nav-pills > li > a {
             background-color: #220022;
             color: #ff99cc;
             margin-bottom: 8px;
             border-radius: 8px;
             text-align: left;
-            padding: 10px 15px;
+            padding: 12px 18px;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
+        
+        .nav-pills > li > a:hover {
+            background: linear-gradient(90deg, #ff66cc44, #ff339944);
+            color: #fff;
+            box-shadow: 0 0 15px #ff66cc55;
+        }
+        
         .nav-pills > li.active > a {
             background: linear-gradient(90deg, #ff66cc, #ff3399);
             color: #fff;
             font-weight: bold;
-            box-shadow: 0 0 10px #ff66cc80;
+            box-shadow: 0 0 20px #ff66cc80;
+        }
+        
+        /* =====================
+           GENERAL ADJUSTMENTS
+        ===================== */
+        .nav-pills {
+            padding: 10px 0;
+        }
+        
+        .nav-pills li {
+            margin-bottom: 5px;
         }
     </style>
 </head>
