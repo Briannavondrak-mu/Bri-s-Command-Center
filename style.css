@@ -2,11 +2,13 @@
    GENERAL STYLES
 ===================== */
 body.landing-page {
-    background-color: #0d0d0d;
+    background-color: #0a0a0a;
     color: #fff;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
 h1, h3, h4, h5 {
@@ -15,9 +17,16 @@ h1, h3, h4, h5 {
     margin-bottom: 15px;
 }
 
+h1 {
+    font-size: 3rem;
+    text-shadow: 0 0 10px #ff66cc66;
+}
+
 a {
     color: #ff66cc;
+    transition: all 0.3s ease;
 }
+
 a:hover {
     color: #ff3399;
     text-decoration: none;
@@ -29,21 +38,30 @@ a:hover {
 .navbar-inverse {
     background-color: #111;
     border: none;
+    box-shadow: 0 2px 10px rgba(255, 102, 204, 0.3);
 }
 
 .navbar-inverse .navbar-brand {
     color: #ff66cc;
     font-weight: bold;
     font-size: 1.3em;
+    text-shadow: 0 0 5px #ff66cc66;
 }
 
 .navbar-inverse .navbar-nav > li > a {
     color: #ff99cc;
+    transition: all 0.3s ease;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: #fff;
 }
 
 .navbar-inverse .navbar-nav > li.active > a {
     color: #fff;
-    background-color: #330033;
+    background: linear-gradient(90deg, #ff66cc, #ff3399);
+    border-radius: 8px;
+    box-shadow: 0 0 10px #ff66cc66;
 }
 
 /* =====================
@@ -52,23 +70,28 @@ a:hover {
 .jumbotron {
     background: linear-gradient(135deg, #330033, #660066);
     color: #ffccff;
-    padding: 30px 20px;
+    padding: 40px 20px;
     margin-bottom: 30px;
-    border-radius: 0;
-    text-shadow: 0 0 5px #ff66cc;
+    border-radius: 15px;
+    text-shadow: 0 0 8px #ff66cc88;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.jumbotron:hover {
+    box-shadow: 0 0 30px #ff66cc80;
 }
 
 .jumbotron h1 {
-    font-size: 3.0rem;
+    font-size: 3rem;
     margin-bottom: 10px;
 }
 
 .jumbotron p {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     margin-bottom: 0;
 }
 
@@ -78,7 +101,7 @@ a:hover {
 .home {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 25px;
     padding: 20px;
 }
 
@@ -89,33 +112,46 @@ a:hover {
 }
 
 .todo-widget {
-    background-color: #1a001a;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px #ff66cc80;
+    background: linear-gradient(145deg, #1a001a, #2a001a);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #ff66cc55;
+    transition: all 0.3s ease;
+}
+
+.todo-widget:hover {
+    box-shadow: 0 0 25px #ff66cc88;
 }
 
 .todo-widget h3 {
     color: #ff99cc;
-    margin-bottom: 15px;
-}
-.todo-widget .input-group .btn {
-    margin-left: 5px; /* space between input and button */
+    margin-bottom: 20px;
 }
 
 .input-group input {
     background-color: #2a001a;
     border: 1px solid #ff66cc;
     color: #fff;
+    border-radius: 6px 0 0 6px;
+    padding: 10px;
+    transition: all 0.3s ease;
 }
 
 .input-group input::placeholder {
-    color: #ff99cc;
+    color: #ff99ccaa;
+}
+
+.input-group input:focus {
+    border-color: #ff3399;
+    box-shadow: 0 0 10px #ff339980;
+    outline: none;
 }
 
 .input-group-btn .btn-success {
     background-color: #ff3399;
     border: none;
+    border-radius: 0 6px 6px 0;
+    transition: all 0.3s ease;
 }
 
 .input-group-btn .btn-success:hover {
@@ -124,7 +160,7 @@ a:hover {
 
 /* TO-DO LIST ITEMS */
 #todoList {
-    margin-top: 15px;
+    margin-top: 20px;
     max-height: 500px;
     overflow-y: auto;
 }
@@ -133,11 +169,17 @@ a:hover {
     background-color: #220022;
     color: #fff;
     border: 1px solid #ff66cc40;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: 0.3s;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.list-group-item.todo-item:hover {
+    background: linear-gradient(90deg, #ff66cc44, #ff339944);
+    transform: translateY(-2px);
 }
 
 .list-group-item.todo-item.completed .task-text {
@@ -145,22 +187,17 @@ a:hover {
     color: #ff99cc80;
 }
 
-.list-group-item.todo-item:hover {
-    background-color: #330033;
-}
-
-/* DELETE BUTTON */
 .delete-btn {
     background: none;
     border: none;
     color: #ff66cc;
     cursor: pointer;
+    transition: color 0.2s ease;
 }
 
 .delete-btn:hover {
     color: #ff3399;
 }
-
 
 /* =====================
    RIGHT PANEL: WEATHER & NEWS
@@ -178,10 +215,15 @@ a:hover {
 
 /* NEWS WIDGET */
 .news-widget {
-    background-color: #1a001a;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px #ff66cc80;
+    background: linear-gradient(145deg, #1a001a, #2a001a);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #ff66cc55;
+    transition: all 0.3s ease;
+}
+
+.news-widget:hover {
+    box-shadow: 0 0 25px #ff66cc88;
 }
 
 .news-widget h3 {
@@ -196,16 +238,21 @@ a:hover {
 
 /* WEATHER CARD */
 .weather-card {
-    background-color: #220022;
-    border-radius: 10px;
-    padding: 20px;
+    background: linear-gradient(145deg, #220022, #2a001a);
+    border-radius: 15px;
+    padding: 25px;
     margin-bottom: 15px;
-    box-shadow: 0 0 15px #ff66cc40;
+    box-shadow: 0 0 20px #ff66cc55;
+    transition: all 0.3s ease;
+}
+
+.weather-card:hover {
+    box-shadow: 0 0 25px #ff66cc88;
 }
 
 .weather-header .location-name {
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.3em;
 }
 
 .weather-header .last-updated {
@@ -241,11 +288,16 @@ a:hover {
 
 .forecast-day {
     background-color: #2a001a;
-    border-radius: 10px;
+    border-radius: 12px;
     text-align: center;
-    margin-bottom: 10px;
-    padding: 10px;
-    box-shadow: 0 0 10px #ff66cc40;
+    margin-bottom: 12px;
+    padding: 12px;
+    box-shadow: 0 0 12px #ff66cc44;
+    transition: all 0.3s ease;
+}
+
+.forecast-day:hover {
+    box-shadow: 0 0 20px #ff66cc88;
 }
 
 .forecast-day h5 {
@@ -266,15 +318,25 @@ a:hover {
     background-color: #2a001a;
     border: 1px solid #ff66cc;
     color: #fff;
+    border-radius: 6px;
+    padding: 8px 12px;
+    transition: all 0.3s ease;
 }
 
 .search-container input::placeholder {
-    color: #ff99cc;
+    color: #ff99ccaa;
+}
+
+.search-container input:focus {
+    border-color: #ff3399;
+    box-shadow: 0 0 10px #ff339980;
 }
 
 .search-container .btn-primary {
     background-color: #ff3399;
     border: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
 }
 
 .search-container .btn-primary:hover {
@@ -289,6 +351,7 @@ a:hover {
     padding: 15px;
     background-color: #111;
     color: #ff66cc;
+    border-top: 1px solid #ff66cc22;
 }
 
 /* =====================
@@ -303,5 +366,10 @@ a:hover {
 .forecast-container::-webkit-scrollbar-thumb {
     background-color: #ff66cc80;
     border-radius: 4px;
+}
+
+#todoList::-webkit-scrollbar-track,
+.forecast-container::-webkit-scrollbar-track {
+    background-color: #1a001a33;
 }
 
