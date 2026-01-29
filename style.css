@@ -63,12 +63,12 @@ a:hover {
 }
 
 .jumbotron h1 {
-    font-size: 2.5rem; /* slightly smaller */
+    font-size: 3.0rem;
     margin-bottom: 10px;
 }
 
 .jumbotron p {
-    font-size: 1.2rem;
+    font-size: 2.5rem;
     margin-bottom: 0;
 }
 
